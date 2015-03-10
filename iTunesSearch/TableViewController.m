@@ -18,7 +18,7 @@
 @end
 
 @implementation TableViewController
-@synthesize texto;
+@synthesize texto, botao, lang;
 
 
 - (void)viewDidLoad {
@@ -75,5 +75,25 @@
     iTunesManager *itunes = [iTunesManager sharedInstance];
     midias = [itunes buscarMidias:self.texto.text];
     [self.tableview reloadData];
+}
+
+- (IBAction)trocaLang:(id)sender {
+    botao.enabled = false;
+    
+    NSInteger i = self.lang.selectedSegmentIndex;
+    
+    if (i==0){
+        [botao setTitle:@"Buscar" forState:UIControlStateNormal];
+    }
+    else{
+        if(i==1){
+            [botao setTitle:@"Search" forState:UIControlStateNormal];
+        }
+        else{
+            [botao setTitle:@"Recherche" forState:UIControlStateNormal];
+        }
+    }
+    botao.enabled = true;
+    NSLog(@"Teste");
 }
 @end
