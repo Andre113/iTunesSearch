@@ -1,25 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D72i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TableViewController">
             <connections>
-                <outlet property="tableview" destination="z24-IP-C1d" id="fiF-7d-ri3"/>
-                <outlet property="view" destination="z24-IP-C1d" id="NXu-VO-9o4"/>
+                <outlet property="tableview" destination="ngZ-S8-I6d" id="Wqk-cU-rGk"/>
+                <outlet property="texto" destination="Wc8-cF-Cl2" id="Fie-Je-bhr"/>
+                <outlet property="view" destination="4xj-xW-D7l" id="jIW-0j-keS"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="z24-IP-C1d">
+        <view contentMode="scaleToFill" id="4xj-xW-D7l">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ngZ-S8-I6d">
+                    <rect key="frame" x="0.0" y="81" width="600" height="519"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Digite sua busca" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wc8-cF-Cl2">
+                    <rect key="frame" x="8" y="22" width="340" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLb-0V-AiW">
+                    <rect key="frame" x="477" y="22" width="71" height="30"/>
+                    <state key="normal" title="Buscar">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="busca:" destination="-1" eventType="touchUpInside" id="b0T-U0-U0b"/>
+                    </connections>
+                </button>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <connections>
-                <outlet property="dataSource" destination="-1" id="grn-Rq-4Ux"/>
-                <outlet property="delegate" destination="-1" id="M2x-yu-OMO"/>
-            </connections>
-            <point key="canvasLocation" x="-135" y="440"/>
-        </tableView>
+            <constraints>
+                <constraint firstItem="Wc8-cF-Cl2" firstAttribute="leading" secondItem="4xj-xW-D7l" secondAttribute="leading" constant="8" id="EfV-2N-wR2"/>
+                <constraint firstItem="ngZ-S8-I6d" firstAttribute="top" secondItem="kLb-0V-AiW" secondAttribute="bottom" constant="29" id="G2P-Yh-gIN"/>
+                <constraint firstAttribute="bottom" secondItem="ngZ-S8-I6d" secondAttribute="bottom" id="GDe-bG-f5V"/>
+                <constraint firstItem="kLb-0V-AiW" firstAttribute="leading" secondItem="Wc8-cF-Cl2" secondAttribute="trailing" constant="129" id="KIa-Dy-0O0"/>
+                <constraint firstItem="ngZ-S8-I6d" firstAttribute="top" secondItem="Wc8-cF-Cl2" secondAttribute="bottom" constant="29" id="Kyj-G5-RxM"/>
+                <constraint firstItem="ngZ-S8-I6d" firstAttribute="leading" secondItem="4xj-xW-D7l" secondAttribute="leading" id="Og6-Nr-9oe"/>
+                <constraint firstItem="ngZ-S8-I6d" firstAttribute="top" secondItem="4xj-xW-D7l" secondAttribute="top" id="Wc2-en-Ztt"/>
+                <constraint firstAttribute="trailing" secondItem="ngZ-S8-I6d" secondAttribute="trailing" id="Yj0-30-0ZM"/>
+                <constraint firstAttribute="trailing" secondItem="kLb-0V-AiW" secondAttribute="trailing" constant="52" id="Zvt-Ex-1CO"/>
+                <constraint firstItem="kLb-0V-AiW" firstAttribute="top" secondItem="4xj-xW-D7l" secondAttribute="top" constant="22" id="dSg-kZ-AW3"/>
+                <constraint firstItem="ngZ-S8-I6d" firstAttribute="leading" secondItem="4xj-xW-D7l" secondAttribute="leading" id="ij0-ey-1O6"/>
+                <constraint firstAttribute="trailing" secondItem="ngZ-S8-I6d" secondAttribute="trailing" id="r32-yA-has"/>
+                <constraint firstItem="Wc8-cF-Cl2" firstAttribute="top" secondItem="4xj-xW-D7l" secondAttribute="top" constant="22" id="r6n-Bi-YYF"/>
+                <constraint firstAttribute="bottom" secondItem="ngZ-S8-I6d" secondAttribute="bottom" id="sCf-7Y-WES"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="G2P-Yh-gIN"/>
+                    <exclude reference="Wc2-en-Ztt"/>
+                    <exclude reference="Yj0-30-0ZM"/>
+                    <exclude reference="ij0-ey-1O6"/>
+                    <exclude reference="sCf-7Y-WES"/>
+                    <exclude reference="KIa-Dy-0O0"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="-120" y="764"/>
+        </view>
     </objects>
 </document>

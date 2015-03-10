@@ -12,6 +12,10 @@
 
 
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
+@property (strong, nonatomic) IBOutlet UIView *view;
+@property (weak, nonatomic) IBOutlet UITextField *texto;
+
+- (IBAction)busca:(id)sender;
 
 @end
 
