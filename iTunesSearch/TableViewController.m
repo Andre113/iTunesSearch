@@ -22,6 +22,22 @@
 
 
 - (void)viewDidLoad {
+    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if([language isEqualToString:@"pt"]){
+        [botao setTitle:@"Buscar" forState:UIControlStateNormal];
+        [self.lang setSelectedSegmentIndex:0];
+    }
+    else{
+        if([language isEqualToString:@"fr"]){
+            [botao setTitle:@"Recherche" forState:UIControlStateNormal];
+            [self.lang setSelectedSegmentIndex:2];
+        }
+        else{
+            [botao setTitle:@"Search" forState:UIControlStateNormal];
+            [self.lang setSelectedSegmentIndex:1];
+        }
+    }
+    
     [super viewDidLoad];
     
     UINib *nib = [UINib nibWithNibName:@"TableViewCell" bundle:nil];
@@ -31,7 +47,7 @@
     [self.tableview setDataSource:self];
     
     iTunesManager *itunes = [iTunesManager sharedInstance];
-    midias = [itunes buscarMidias:self.texto.text];
+    midias = [itunes buscarFilmes:self.texto.text];
 
 #warning Necessario para que a table view tenha um espaco em relacao ao topo, pois caso contrario o texto ficara atras da barra superior
 //    self.tableview.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableview.bounds.size.width, 15.f)];
@@ -57,9 +73,14 @@
     
     Filme *filme = [midias objectAtIndex:indexPath.row];
     
+//    NSDateFormatter *formata = [[NSDateFormatter alloc] init];
+//    [formata setDateFormat:@"HH:mm:ss"];
+//    
+//    NSString *string = [formata stringFromDate:filme.duracao];
+    
     [celula.nome setText:filme.nome];
     [celula.tipo setText:@"Filme"];
-//    [celula.tempo setText:filme.duracao];
+//    [celula.tempo setText:string];
     [celula.genero setText:filme.genero];
     [celula.pais setText:filme.pais];
     
@@ -73,7 +94,7 @@
 
 - (IBAction)busca:(id)sender {
     iTunesManager *itunes = [iTunesManager sharedInstance];
-    midias = [itunes buscarMidias:self.texto.text];
+    midias = [itunes buscarFilmes:self.texto.text];
     [self.tableview reloadData];
 }
 
@@ -94,6 +115,5 @@
         }
     }
     botao.enabled = true;
-    NSLog(@"Teste");
 }
 @end

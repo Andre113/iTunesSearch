@@ -16,6 +16,9 @@
  */
 + (iTunesManager*)sharedInstance;
 
-- (NSArray *)buscarMidias:(NSString *)termo;
+- (NSArray *)buscarFilmes:(NSString *)termo;
+- (NSArray *)buscarMusicas:(NSString *)termo;
+- (NSArray *)buscarPodcast:(NSString *)termo;
+- (NSArray *)buscarLivro:(NSString *)termo;
 
 @end

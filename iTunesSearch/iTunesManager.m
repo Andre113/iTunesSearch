@@ -29,7 +29,7 @@ static bool isFirstAccess = YES;
 }
 
 
-- (NSArray *)buscarMidias:(NSString *)termo {
+- (NSArray *)buscarFilmes:(NSString *)termo {
     if (!termo) {
         termo = @"";
     }
@@ -63,7 +63,39 @@ static bool isFirstAccess = YES;
     return filmes;
 }
 
-
+//- (NSArray *)buscarMusicas:(NSString *)termo {
+//    if (!termo) {
+//        termo = @"";
+//    }
+//    
+//    NSString *url = [NSString stringWithFormat:@"https://itunes.apple.com/search?term=%@&media=music", termo];
+//    NSData *jsonData = [NSData dataWithContentsOfURL: [NSURL URLWithString:url]];
+//    
+//    NSError *error;
+//    NSDictionary *resultado = [NSJSONSerialization JSONObjectWithData:jsonData
+//                                                              options:NSJSONReadingMutableContainers
+//                                                                error:&error];
+//    if (error) {
+//        NSLog(@"Não foi possível fazer a busca. ERRO: %@", error);
+//        return nil;
+//    }
+//    
+//    NSArray *resultados = [resultado objectForKey:@"results"];
+//    NSMutableArray *filmes = [[NSMutableArray alloc] init];
+//    
+//    for (NSDictionary *item in resultados) {
+//        Musica *musica = [[Music alloc] init];
+//        [filme setNome:[item objectForKey:@"trackName"]];
+//        [filme setTrackId:[item objectForKey:@"trackId"]];
+//        [filme setArtista:[item objectForKey:@"artistName"]];
+//        [filme setDuracao:[item objectForKey:@"trackTimeMillis"]];
+//        [filme setGenero:[item objectForKey:@"primaryGenreName"]];
+//        [filme setPais:[item objectForKey:@"country"]];
+//        [filmes addObject:filme];
+//    }
+//    
+//    return filmes;
+//}
 
 
 #pragma mark - Life Cycle
