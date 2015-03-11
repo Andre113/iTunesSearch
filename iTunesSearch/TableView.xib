@@ -51,6 +51,7 @@
                         <segment title="Músicas"/>
                         <segment title="Podcasts"/>
                         <segment title="eBooks"/>
+                        <segment title="Todos"/>
                     </segments>
                     <connections>
                         <action selector="trocaMidia:" destination="-1" eventType="valueChanged" id="G83-RX-2KG"/>

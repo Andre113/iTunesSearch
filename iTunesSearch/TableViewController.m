@@ -67,19 +67,30 @@
     iTunesManager *itunes = [iTunesManager sharedInstance];
     NSInteger i = self.tipoMidia.selectedSegmentIndex;
     
+    arrayFilmes = [itunes buscarFilmes:self.texto.text];
+    arrayMusicas = [itunes buscarMusica:self.texto.text];
+    arrayPodcast = [itunes buscarPodcast:self.texto.text];
+    arrayEBook = [itunes buscarLivro:self.texto.text];
+    
     if(i == 0){
-        midias = [itunes buscarFilmes:self.texto.text];
+        midia = arrayFilmes;
     }
     else{
         if(i == 1){
-            midias = [itunes buscarMusica:self.texto.text];
+            midia = arrayMusicas;
         }
         else{
             if(i == 2){
-                midias = [itunes buscarPodcast:self.texto.text];
+                midia = arrayPodcast;
             }
             else{
-                midias = [itunes buscarLivro:self.texto.text];
+                if(i == 3){
+                    midia = arrayEBook;
+                }
+                else{
+                    NSArray *aux = [[[arrayFilmes arrayByAddingObjectsFromArray:arrayMusicas]arrayByAddingObjectsFromArray:arrayPodcast]arrayByAddingObjectsFromArray:arrayEBook];
+                    midia = aux;
+                }
             }
         }
     }
