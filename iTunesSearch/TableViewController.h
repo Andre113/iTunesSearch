@@ -14,11 +14,14 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet UITextField *texto;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *tipoMidia;
+
 @property (weak, nonatomic) IBOutlet UIButton *botao;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *lang;
 
 - (IBAction)busca:(id)sender;
 - (IBAction)trocaLang:(id)sender;
+- (IBAction)trocaMidia:(id)sender;
 
 @end
 

@@ -10,6 +10,7 @@
                 <outlet property="lang" destination="ANj-tz-uPq" id="PP6-AM-8rB"/>
                 <outlet property="tableview" destination="ngZ-S8-I6d" id="Wqk-cU-rGk"/>
                 <outlet property="texto" destination="Wc8-cF-Cl2" id="Fie-Je-bhr"/>
+                <outlet property="tipoMidia" destination="Gwo-7e-hea" id="Kvz-ym-eYL"/>
                 <outlet property="view" destination="4xj-xW-D7l" id="jIW-0j-keS"/>
             </connections>
         </placeholder>
@@ -18,10 +19,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ngZ-S8-I6d">
-                    <rect key="frame" x="0.0" y="81" width="600" height="519"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="apple" borderStyle="roundedRect" placeholder="Digite sua busca" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wc8-cF-Cl2">
                     <rect key="frame" x="8" y="22" width="219" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -47,10 +44,27 @@
                         <action selector="trocaLang:" destination="-1" eventType="valueChanged" id="pDr-hB-Xh1"/>
                     </connections>
                 </segmentedControl>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-7e-hea">
+                    <rect key="frame" x="0.0" y="77" width="600" height="29"/>
+                    <segments>
+                        <segment title="Filmes"/>
+                        <segment title="Músicas"/>
+                        <segment title="Podcasts"/>
+                        <segment title="eBooks"/>
+                    </segments>
+                    <connections>
+                        <action selector="trocaMidia:" destination="-1" eventType="valueChanged" id="G83-RX-2KG"/>
+                    </connections>
+                </segmentedControl>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ngZ-S8-I6d">
+                    <rect key="frame" x="0.0" y="120" width="600" height="480"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="ANj-tz-uPq" firstAttribute="top" secondItem="4xj-xW-D7l" secondAttribute="top" constant="22" id="4On-P7-BWP"/>
+                <constraint firstItem="Gwo-7e-hea" firstAttribute="leading" secondItem="4xj-xW-D7l" secondAttribute="leading" id="7gX-Li-44r"/>
                 <constraint firstItem="Wc8-cF-Cl2" firstAttribute="leading" secondItem="4xj-xW-D7l" secondAttribute="leading" constant="8" id="EfV-2N-wR2"/>
                 <constraint firstItem="ngZ-S8-I6d" firstAttribute="top" secondItem="kLb-0V-AiW" secondAttribute="bottom" constant="29" id="G2P-Yh-gIN"/>
                 <constraint firstAttribute="bottom" secondItem="ngZ-S8-I6d" secondAttribute="bottom" id="GDe-bG-f5V"/>
@@ -58,6 +72,7 @@
                 <constraint firstItem="ngZ-S8-I6d" firstAttribute="top" secondItem="Wc8-cF-Cl2" secondAttribute="bottom" constant="29" id="Kyj-G5-RxM"/>
                 <constraint firstItem="ANj-tz-uPq" firstAttribute="leading" secondItem="Wc8-cF-Cl2" secondAttribute="trailing" constant="6" id="OcD-Qp-IkS"/>
                 <constraint firstItem="ngZ-S8-I6d" firstAttribute="leading" secondItem="4xj-xW-D7l" secondAttribute="leading" id="Og6-Nr-9oe"/>
+                <constraint firstItem="Gwo-7e-hea" firstAttribute="top" secondItem="kLb-0V-AiW" secondAttribute="bottom" constant="25" id="QOl-QU-HOe"/>
                 <constraint firstItem="ngZ-S8-I6d" firstAttribute="top" secondItem="4xj-xW-D7l" secondAttribute="top" id="Wc2-en-Ztt"/>
                 <constraint firstAttribute="trailing" secondItem="ngZ-S8-I6d" secondAttribute="trailing" id="Yj0-30-0ZM"/>
                 <constraint firstAttribute="trailing" secondItem="kLb-0V-AiW" secondAttribute="trailing" constant="5" id="Zvt-Ex-1CO"/>
@@ -66,10 +81,13 @@
                 <constraint firstAttribute="trailing" secondItem="ngZ-S8-I6d" secondAttribute="trailing" id="r32-yA-has"/>
                 <constraint firstItem="Wc8-cF-Cl2" firstAttribute="top" secondItem="4xj-xW-D7l" secondAttribute="top" constant="22" id="r6n-Bi-YYF"/>
                 <constraint firstAttribute="bottom" secondItem="ngZ-S8-I6d" secondAttribute="bottom" id="sCf-7Y-WES"/>
+                <constraint firstItem="ngZ-S8-I6d" firstAttribute="top" secondItem="Gwo-7e-hea" secondAttribute="bottom" constant="15" id="vKY-3D-dWy"/>
+                <constraint firstAttribute="trailing" secondItem="Gwo-7e-hea" secondAttribute="trailing" id="xDl-fb-XV7"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="G2P-Yh-gIN"/>
+                    <exclude reference="Kyj-G5-RxM"/>
                     <exclude reference="Wc2-en-Ztt"/>
                     <exclude reference="Yj0-30-0ZM"/>
                     <exclude reference="ij0-ey-1O6"/>

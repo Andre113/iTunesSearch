@@ -8,6 +8,9 @@
 
 #import "iTunesManager.h"
 #import "Entidades/Filme.h"
+#import "Entidades/Musica.h"
+#import "Entidades/Podcast.h"
+#import "Entidades/Livro.h"
 
 @implementation iTunesManager
 
@@ -28,14 +31,19 @@ static bool isFirstAccess = YES;
     return SINGLETON;
 }
 
-
-- (NSArray *)buscarFilmes:(NSString *)termo {
-    if (!termo) {
-        termo = @"";
+- (NSArray *) pesquisa: (NSString *)termoUsado: (NSString *)tipo{
+    
+    if (!termoUsado) {
+        termoUsado = @"";
     }
     
-    NSString *url = [NSString stringWithFormat:@"https://itunes.apple.com/search?term=%@&media=movie", termo];
+    
+    NSString *url = [NSString stringWithFormat:@"https://itunes.apple.com/search?term=%@&media=%@", termoUsado, tipo];
     NSData *jsonData = [NSData dataWithContentsOfURL: [NSURL URLWithString:url]];
+    
+    if(jsonData==nil){
+        return nil;
+    }
     
     NSError *error;
     NSDictionary *resultado = [NSJSONSerialization JSONObjectWithData:jsonData
@@ -47,28 +55,17 @@ static bool isFirstAccess = YES;
     }
     
     NSArray *resultados = [resultado objectForKey:@"results"];
-    NSMutableArray *filmes = [[NSMutableArray alloc] init];
     
-    for (NSDictionary *item in resultados) {
-        Filme *filme = [[Filme alloc] init];
-        [filme setNome:[item objectForKey:@"trackName"]];
-        [filme setTrackId:[item objectForKey:@"trackId"]];
-        [filme setArtista:[item objectForKey:@"artistName"]];
-        [filme setDuracao:[item objectForKey:@"trackTimeMillis"]];
-        [filme setGenero:[item objectForKey:@"primaryGenreName"]];
-        [filme setPais:[item objectForKey:@"country"]];
-        [filmes addObject:filme];
-    }
-    
-    return filmes;
+    return resultados;
 }
 
-//- (NSArray *)buscarMusicas:(NSString *)termo {
+- (NSArray *)buscarFilmes:(NSString *)termo {
+    
 //    if (!termo) {
 //        termo = @"";
 //    }
 //    
-//    NSString *url = [NSString stringWithFormat:@"https://itunes.apple.com/search?term=%@&media=music", termo];
+//    NSString *url = [NSString stringWithFormat:@"https://itunes.apple.com/search?term=%@&media=movie", termo];
 //    NSData *jsonData = [NSData dataWithContentsOfURL: [NSURL URLWithString:url]];
 //    
 //    NSError *error;
@@ -81,21 +78,70 @@ static bool isFirstAccess = YES;
 //    }
 //    
 //    NSArray *resultados = [resultado objectForKey:@"results"];
-//    NSMutableArray *filmes = [[NSMutableArray alloc] init];
-//    
-//    for (NSDictionary *item in resultados) {
-//        Musica *musica = [[Music alloc] init];
-//        [filme setNome:[item objectForKey:@"trackName"]];
-//        [filme setTrackId:[item objectForKey:@"trackId"]];
-//        [filme setArtista:[item objectForKey:@"artistName"]];
-//        [filme setDuracao:[item objectForKey:@"trackTimeMillis"]];
-//        [filme setGenero:[item objectForKey:@"primaryGenreName"]];
-//        [filme setPais:[item objectForKey:@"country"]];
-//        [filmes addObject:filme];
-//    }
-//    
-//    return filmes;
-//}
+    
+    NSArray *resultados = [self pesquisa:termo: @"movie"];
+    
+    NSMutableArray *filmes = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *item in resultados) {
+        Filme *filme = [[Filme alloc] init];
+        [filme setNome:[item objectForKey:@"trackName"]];
+        [filme setGenero:[item objectForKey:@"primaryGenreName"]];
+        [filme setPais:[item objectForKey:@"country"]];
+        [filmes addObject:filme];
+    }
+    
+    return filmes;
+}
+
+- (NSArray *)buscarMusica:(NSString *)termo {
+    
+    NSArray *resultados = [self pesquisa:termo :@"music"];
+    
+    NSMutableArray *musicas = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *item in resultados) {
+        Musica *musica = [[Musica alloc] init];
+        [musica setNome:[item objectForKey:@"trackName"]];
+        [musica setGenero:[item objectForKey:@"primaryGenreName"]];
+        [musica setPais:[item objectForKey:@"country"]];
+        [musicas addObject:musica];
+    }
+    
+    return musicas;
+}
+
+- (NSArray *)buscarPodcast:(NSString *)termo{
+    NSArray *resultados = [self pesquisa:termo :@"podcast"];
+    
+    NSMutableArray *podcasts = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *item in resultados) {
+        Podcast *podcast = [[Podcast alloc] init];
+        [podcast setNome:[item objectForKey:@"trackName"]];
+        [podcast setGenero:[item objectForKey:@"primaryGenreName"]];
+        [podcast setPais:[item objectForKey:@"country"]];
+        [podcasts addObject:podcast];
+    }
+    
+    return podcasts;
+}
+
+- (NSArray *)buscarLivro:(NSString *)termo{
+    NSArray *resultados = [self pesquisa:termo :@"ebook"];
+    
+    NSMutableArray *livros = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *item in resultados) {
+        Livro *livro = [[Livro alloc] init];
+        [livro setNome:[item objectForKey:@"trackName"]];
+        [livro setGenero:[item objectForKey:@"primaryGenreName"]];
+        [livro setPais:[item objectForKey:@"country"]];
+        [livros addObject:livro];
+    }
+    
+    return livros;
+}
 
 
 #pragma mark - Life Cycle

@@ -10,19 +10,43 @@
 #import "TableViewCell.h"
 #import "iTunesManager.h"
 #import "Entidades/Filme.h"
+#import "Entidades/Musica.h"
+#import "Entidades/Podcast.h"
+#import "Entidades/Livro.h"
 
 @interface TableViewController () {
     NSArray *midias;
+    NSArray *arrayFilmes;
+    NSArray *arrayMusicas;
+    NSArray *arrayPodcast;
+    NSArray *arrayEBook;
 }
 
 @end
 
 @implementation TableViewController
-@synthesize texto, botao, lang;
+@synthesize texto, botao, lang, tipoMidia;
 
 
 - (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    
+    UINib *nib = [UINib nibWithNibName:@"TableViewCell" bundle:nil];
+    
+    [self.tableview registerNib:nib forCellReuseIdentifier:@"celulaPadrao"];
+    [self.tableview setDelegate:self];
+    [self.tableview setDataSource:self];
+    
     NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    [self changeLang:language];
+    [self midiaSelect:midias];
+    
+#warning Necessario para que a table view tenha um espaco em relacao ao topo, pois caso contrario o texto ficara atras da barra superior
+//    self.tableview.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableview.bounds.size.width, 15.f)];
+}
+
+- (void)changeLang: (NSString *)language{
     if([language isEqualToString:@"pt"]){
         [botao setTitle:@"Buscar" forState:UIControlStateNormal];
         [self.lang setSelectedSegmentIndex:0];
@@ -37,20 +61,28 @@
             [self.lang setSelectedSegmentIndex:1];
         }
     }
-    
-    [super viewDidLoad];
-    
-    UINib *nib = [UINib nibWithNibName:@"TableViewCell" bundle:nil];
-    
-    [self.tableview registerNib:nib forCellReuseIdentifier:@"celulaPadrao"];
-    [self.tableview setDelegate:self];
-    [self.tableview setDataSource:self];
-    
-    iTunesManager *itunes = [iTunesManager sharedInstance];
-    midias = [itunes buscarFilmes:self.texto.text];
+}
 
-#warning Necessario para que a table view tenha um espaco em relacao ao topo, pois caso contrario o texto ficara atras da barra superior
-//    self.tableview.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableview.bounds.size.width, 15.f)];
+- (void)midiaSelect: (NSArray *) midia{
+    iTunesManager *itunes = [iTunesManager sharedInstance];
+    NSInteger i = self.tipoMidia.selectedSegmentIndex;
+    
+    if(i == 0){
+        midias = [itunes buscarFilmes:self.texto.text];
+    }
+    else{
+        if(i == 1){
+            midias = [itunes buscarMusica:self.texto.text];
+        }
+        else{
+            if(i == 2){
+                midias = [itunes buscarPodcast:self.texto.text];
+            }
+            else{
+                midias = [itunes buscarLivro:self.texto.text];
+            }
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,23 +100,51 @@
     return [midias count];
 }
 
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TableViewCell *celula = [self.tableview dequeueReusableCellWithIdentifier:@"celulaPadrao"];
     
-    Filme *filme = [midias objectAtIndex:indexPath.row];
+    NSInteger i = self.tipoMidia.selectedSegmentIndex;
     
-//    NSDateFormatter *formata = [[NSDateFormatter alloc] init];
-//    [formata setDateFormat:@"HH:mm:ss"];
-//    
-//    NSString *string = [formata stringFromDate:filme.duracao];
-    
-    [celula.nome setText:filme.nome];
-    [celula.tipo setText:@"Filme"];
-//    [celula.tempo setText:string];
-    [celula.genero setText:filme.genero];
-    [celula.pais setText:filme.pais];
-    
-    return celula;
+    if(i == 0){
+        Filme *filme = [midias objectAtIndex:indexPath.row];
+        
+        [celula.nome setText:filme.nome];
+        [celula.tipo setText:@"Filme"];
+        [celula.genero setText:filme.genero];
+        [celula.pais setText:filme.pais];
+        
+        return celula;
+    }
+    else{
+        if(i == 1){
+            Musica *musica = [midias objectAtIndex:indexPath.row];
+            [celula.nome setText:musica.nome];
+            [celula.tipo setText:@"Música"];
+            [celula.genero setText:musica.genero];
+            [celula.pais setText:musica.pais];
+            
+            return celula;
+        }
+        else{
+            if(i == 2){
+                Podcast *podcast = [midias objectAtIndex:indexPath.row];
+                [celula.nome setText:podcast.nome];
+                [celula.tipo setText:@"Podcast"];
+                [celula.genero setText:podcast.genero];
+                [celula.pais setText:podcast.pais];
+                
+                return celula;
+            }
+            else{
+                Livro *livro = [midias objectAtIndex:indexPath.row];
+                [celula.nome setText:livro.nome];
+                [celula.tipo setText:@"Livro"];
+                
+                return celula;
+            }
+        }
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -93,8 +153,8 @@
 
 
 - (IBAction)busca:(id)sender {
-    iTunesManager *itunes = [iTunesManager sharedInstance];
-    midias = [itunes buscarFilmes:self.texto.text];
+    [self midiaSelect:midias];
+//    midias = [itunes buscarFilmes:self.texto.text];
     [self.tableview reloadData];
 }
 
@@ -115,5 +175,9 @@
         }
     }
     botao.enabled = true;
+}
+
+- (IBAction)trocaMidia:(id)sender {
+    [self busca:self];
 }
 @end
