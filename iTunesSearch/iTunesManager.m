@@ -67,7 +67,7 @@ static bool isFirstAccess = YES;
         [filme setGenero:[item objectForKey:@"primaryGenreName"]];
         [filme setPais:[item objectForKey:@"country"]];
         [filme setIdent:[item objectForKey:@"kind"]];
-        [filme setImg:[item objectForKey:@"artworkUrl60"]];
+        [filme setImg:[item objectForKey:@"artworkUrl100"]];
         [filmes addObject:filme];
     }
     
@@ -86,7 +86,7 @@ static bool isFirstAccess = YES;
         [musica setGenero:[item objectForKey:@"primaryGenreName"]];
         [musica setPais:[item objectForKey:@"country"]];
         [musica setIdent:[item objectForKey:@"kind"]];
-        [musica setImg:[item objectForKey:@"artworkUrl60"]];
+        [musica setImg:[item objectForKey:@"artworkUrl100"]];
         [musicas addObject:musica];
     }
     
@@ -104,7 +104,7 @@ static bool isFirstAccess = YES;
         [podcast setGenero:[item objectForKey:@"primaryGenreName"]];
         [podcast setPais:[item objectForKey:@"country"]];
         [podcast setIdent:[item objectForKey:@"kind"]];
-        [podcast setImg:[item objectForKey:@"artworkUrl60"]];
+        [podcast setImg:[item objectForKey:@"artworkUrl100"]];
         [podcasts addObject:podcast];
     }
     
@@ -122,7 +122,7 @@ static bool isFirstAccess = YES;
         [livro setGenero:[item objectForKey:@"primaryGenreName"]];
         [livro setPais:[item objectForKey:@"country"]];
         [livro setIdent:[item objectForKey:@"kind"]];
-        [livro setImg:[item objectForKey:@"artworkUrl60"]];
+        [livro setImg:[item objectForKey:@"artworkUrl100"]];
         [livros addObject:livro];
     }
     

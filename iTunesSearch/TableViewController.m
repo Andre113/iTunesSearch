@@ -104,6 +104,10 @@
             [celula.genero setText:filme.genero];
             [celula.pais setText:filme.pais];
             
+            NSURL *imageURL = [NSURL URLWithString:filme.img];
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            [celula.img setImage:[UIImage imageWithData:imageData]];
+            
             break;
         }
         
@@ -113,6 +117,10 @@
             [celula.tipo setText:@"Música"];
             [celula.genero setText:musica.genero];
             [celula.pais setText:musica.pais];
+            
+            NSURL *imageURL = [NSURL URLWithString:musica.img];
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            [celula.img setImage:[UIImage imageWithData:imageData]];
             
             break;
         }
@@ -124,6 +132,10 @@
             [celula.genero setText:podcast.genero];
             [celula.pais setText:podcast.pais];
             
+            NSURL *imageURL = [NSURL URLWithString:podcast.img];
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            [celula.img setImage:[UIImage imageWithData:imageData]];
+            
             break;
         }
         
@@ -131,6 +143,11 @@
             Livro *livro = [arrayEBook objectAtIndex:indexPath.row];
             [celula.nome setText:livro.nome];
             [celula.tipo setText:@"Livro"];
+            
+            NSURL *imageURL = [NSURL URLWithString:livro.img];
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            [celula.img setImage:[UIImage imageWithData:imageData]];
+            
             break;
         }
         
@@ -141,6 +158,7 @@
                 [celula.tipo setText:@"Filme"];
                 [celula.genero setText:filme.genero];
                 [celula.pais setText:filme.pais];
+                [celula.img setImage:[UIImage imageNamed:filme.img]];
             }
             
             if (indexPath.section == 1){
@@ -149,6 +167,7 @@
                 [celula.tipo setText:@"Música"];
                 [celula.genero setText:musica.genero];
                 [celula.pais setText:musica.pais];
+                [celula.img setImage:[UIImage imageNamed:musica.img]];
             }
             
             if (indexPath.section == 2){
@@ -157,12 +176,14 @@
                 [celula.tipo setText:@"Podcast"];
                 [celula.genero setText:podcast.genero];
                 [celula.pais setText:podcast.pais];
+                [celula.img setImage:[UIImage imageNamed:podcast.img]];
             }
             
             if (indexPath.section == 3){
                 Livro *livro = [arrayEBook objectAtIndex:indexPath.row];
                 [celula.nome setText:livro.nome];
                 [celula.tipo setText:@"Livro"];
+                [celula.img setImage:[UIImage imageNamed:livro.img]];
                 break;
             }
         }
@@ -209,7 +230,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 70;
+    return 180;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
