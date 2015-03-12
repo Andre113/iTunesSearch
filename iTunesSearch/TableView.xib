@@ -44,7 +44,7 @@
                         <action selector="trocaLang:" destination="-1" eventType="valueChanged" id="pDr-hB-Xh1"/>
                     </connections>
                 </segmentedControl>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-7e-hea">
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-7e-hea">
                     <rect key="frame" x="0.0" y="77" width="600" height="29"/>
                     <segments>
                         <segment title="Filmes"/>

@@ -16,5 +16,6 @@
 //@property (nonatomic, strong) NSDate *duracao;
 @property (nonatomic, strong) NSString *genero;
 @property (nonatomic, strong) NSString *pais;
+@property (nonatomic, strong) NSString *ident;
 
 @end

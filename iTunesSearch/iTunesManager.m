@@ -31,19 +31,15 @@ static bool isFirstAccess = YES;
     return SINGLETON;
 }
 
-- (NSArray *) pesquisa: (NSString *)termoUsado: (NSString *)tipo{
+- (NSArray *)pesquisa:(NSString *) termoUsado :(NSString *)tipo{
     
-    if (!termoUsado) {
-        termoUsado = @"";
-    }
+//    if (!termoUsado) {
+//        termoUsado = @"";
+//    }
     
     
     NSString *url = [NSString stringWithFormat:@"https://itunes.apple.com/search?term=%@&media=%@", termoUsado, tipo];
     NSData *jsonData = [NSData dataWithContentsOfURL: [NSURL URLWithString:url]];
-    
-    if(jsonData==nil){
-        return nil;
-    }
     
     NSError *error;
     NSDictionary *resultado = [NSJSONSerialization JSONObjectWithData:jsonData
@@ -88,6 +84,7 @@ static bool isFirstAccess = YES;
         [filme setNome:[item objectForKey:@"trackName"]];
         [filme setGenero:[item objectForKey:@"primaryGenreName"]];
         [filme setPais:[item objectForKey:@"country"]];
+        [filme setIdent:[item objectForKey:@"kind"]];
         [filmes addObject:filme];
     }
     
@@ -105,6 +102,7 @@ static bool isFirstAccess = YES;
         [musica setNome:[item objectForKey:@"trackName"]];
         [musica setGenero:[item objectForKey:@"primaryGenreName"]];
         [musica setPais:[item objectForKey:@"country"]];
+        [musica setIdent:[item objectForKey:@"kind"]];
         [musicas addObject:musica];
     }
     
@@ -121,6 +119,7 @@ static bool isFirstAccess = YES;
         [podcast setNome:[item objectForKey:@"trackName"]];
         [podcast setGenero:[item objectForKey:@"primaryGenreName"]];
         [podcast setPais:[item objectForKey:@"country"]];
+        [podcast setIdent:[item objectForKey:@"kind"]];
         [podcasts addObject:podcast];
     }
     
@@ -137,6 +136,7 @@ static bool isFirstAccess = YES;
         [livro setNome:[item objectForKey:@"trackName"]];
         [livro setGenero:[item objectForKey:@"primaryGenreName"]];
         [livro setPais:[item objectForKey:@"country"]];
+        [livro setIdent:[item objectForKey:@"kind"]];
         [livros addObject:livro];
     }
     
