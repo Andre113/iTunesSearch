@@ -17,4 +17,6 @@
 @property (nonatomic, strong) NSString *genero;
 @property (nonatomic, strong) NSString *pais;
 @property (nonatomic, strong) NSString *ident;
+@property (nonatomic, strong) NSString *img;
+
 @end
