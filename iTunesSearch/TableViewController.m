@@ -9,6 +9,7 @@
 #import "TableViewController.h"
 #import "TableViewCell.h"
 #import "iTunesManager.h"
+#import "CelulaViewController.h"
 #import "Entidades/Filme.h"
 #import "Entidades/Musica.h"
 #import "Entidades/Podcast.h"
@@ -50,7 +51,7 @@
 //    self.tableview.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableview.bounds.size.width, 15.f)];
 }
 
-//Trocar a linguaem dependendo do sistema
+//Trocar a linguagem dependendo do sistema
 - (void)changeLang: (NSString *)language{
     if([language isEqualToString:@"pt"]){
         [botao setTitle:@"Buscar" forState:UIControlStateNormal];
@@ -150,6 +151,7 @@
             Livro *livro = [arrayEBook objectAtIndex:indexPath.row];
             [celula.nome setText:livro.nome];
             [celula.tipo setText:@"Livro"];
+            [celula.genero setText:livro.autor];
             
             NSURL *imageURL = [NSURL URLWithString:livro.img];
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
@@ -199,6 +201,7 @@
                 Livro *livro = [arrayEBook objectAtIndex:indexPath.row];
                 [celula.nome setText:livro.nome];
                 [celula.tipo setText:@"Livro"];
+                [celula.genero setText:livro.autor];
                 
                 NSURL *imageURL = [NSURL URLWithString:livro.img];
                 NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
@@ -283,6 +286,93 @@
         return @"eBook";
     return @"undefined";
 }
+
+////Para outra view
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    NSInteger i = self.tipoMidia.selectedSegmentIndex;
+//    CelulaViewController *cel = [[CelulaViewController alloc]init];
+//    
+////    Filme *filme = [arrayFilmes objectAtIndex:indexPath.row];
+////    [cel.titulo setText:filme.nome];
+//    
+//    if(i==4){
+//        switch(indexPath.section){
+//            case 0:{
+//                Filme *filme = [arrayFilmes objectAtIndex:indexPath.row];
+//                [cel.titulo setText:@"teste"];
+//                [cel.tipo setText:@"Filme"];
+//                [cel.genero setText:filme.genero];
+//                [cel.preco setText:filme.preco];
+//                break;
+//            }
+//        }
+//        switch(indexPath.section){
+//            case 1:{
+//                Musica *musica = [arrayMusicas objectAtIndex:indexPath.row];
+//                [cel.titulo setText:musica.nome];
+//                [cel.tipo setText:@"Musica"];
+//                [cel.genero setText:musica.genero];
+//                [cel.preco setText:musica.preco];
+//                break;
+//            }
+//        }
+//        switch(indexPath.section){
+//            case 2:{
+//                Podcast *podcast = [arrayPodcast objectAtIndex:indexPath.row];
+//                [cel.titulo setText:podcast.nome];
+//                [cel.tipo setText:@"Podcast"];
+//                [cel.genero setText:podcast.genero];
+//                [cel.preco setText:podcast.preco];
+//                break;
+//            }
+//        }
+//        switch(indexPath.section){
+//            case 3:{
+//                Livro *livro = [arrayEBook objectAtIndex:indexPath.row];
+//                [cel.titulo setText:livro.nome];
+//                [cel.tipo setText:@"Livro"];
+//                [cel.genero setText:livro.autor];
+//                [cel.preco setText:livro.preco];
+//                break;
+//            }
+//        }
+//    }
+//    else{
+//        if(i == 0){
+//            Filme *filme = [arrayFilmes objectAtIndex:indexPath.row];
+//            [cel.titulo setText:filme.nome];
+//            [cel.tipo setText:@"Filme"];
+//            [cel.genero setText:filme.genero];
+//            [cel.preco setText:filme.preco];
+//        }
+//        else{
+//            if(i == 1){
+//                Musica *musica = [arrayMusicas objectAtIndex:indexPath.row];
+//                [cel.titulo setText:musica.nome];
+//                [cel.tipo setText:@"Musica"];
+//                [cel.genero setText:musica.genero];
+//                [cel.preco setText:musica.preco];
+//            }
+//            else{
+//                if(i == 2){
+//                    Podcast *podcast = [arrayPodcast objectAtIndex:indexPath.row];
+//                    [cel.titulo setText:podcast.nome];
+//                    [cel.tipo setText:@"Podcast"];
+//                    [cel.genero setText:podcast.genero];
+//                    [cel.preco setText:podcast.preco];
+//                }
+//                else{
+//                    Livro *livro = [arrayEBook objectAtIndex:indexPath.row];
+//                    [cel.titulo setText:livro.nome];
+//                    [cel.tipo setText:@"Livro"];
+//                    [cel.genero setText:livro.autor];
+//                    [cel.preco setText:livro.preco];
+//                }
+//            }
+//        }
+//    }
+//    [self.navigationController pushViewController:cel animated:YES];
+//}
 
 // Para colocar imagens na section
 //- (UIView *)tableView : (UITableView *)tableView viewForHeaderInSection : (NSInteger) section {

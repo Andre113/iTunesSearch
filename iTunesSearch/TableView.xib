@@ -19,13 +19,13 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="apple" borderStyle="roundedRect" placeholder="Digite sua busca" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wc8-cF-Cl2">
-                    <rect key="frame" x="8" y="22" width="219" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="apple" borderStyle="roundedRect" placeholder="Digite sua busca" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wc8-cF-Cl2">
+                    <rect key="frame" x="8" y="75" width="129" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLb-0V-AiW">
-                    <rect key="frame" x="477" y="22" width="71" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLb-0V-AiW">
+                    <rect key="frame" x="546" y="75" width="49" height="30"/>
                     <state key="normal" title="Buscar">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -33,8 +33,8 @@
                         <action selector="busca:" destination="-1" eventType="touchUpInside" id="b0T-U0-U0b"/>
                     </connections>
                 </button>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ANj-tz-uPq">
-                    <rect key="frame" x="274" y="22" width="123" height="29"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ANj-tz-uPq">
+                    <rect key="frame" x="143" y="75" width="92" height="29"/>
                     <segments>
                         <segment title="Pt"/>
                         <segment title="En"/>
@@ -45,7 +45,7 @@
                     </connections>
                 </segmentedControl>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-7e-hea">
-                    <rect key="frame" x="0.0" y="77" width="600" height="29"/>
+                    <rect key="frame" x="0.0" y="130" width="600" height="29"/>
                     <segments>
                         <segment title="Filmes"/>
                         <segment title="Músicas"/>
@@ -58,13 +58,13 @@
                     </connections>
                 </segmentedControl>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ngZ-S8-I6d">
-                    <rect key="frame" x="0.0" y="120" width="600" height="480"/>
+                    <rect key="frame" x="0.0" y="173" width="600" height="427"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="ANj-tz-uPq" firstAttribute="top" secondItem="4xj-xW-D7l" secondAttribute="top" constant="22" id="4On-P7-BWP"/>
+                <constraint firstItem="ANj-tz-uPq" firstAttribute="top" secondItem="4xj-xW-D7l" secondAttribute="top" constant="75" id="4On-P7-BWP"/>
                 <constraint firstItem="Gwo-7e-hea" firstAttribute="leading" secondItem="4xj-xW-D7l" secondAttribute="leading" id="7gX-Li-44r"/>
                 <constraint firstItem="Wc8-cF-Cl2" firstAttribute="leading" secondItem="4xj-xW-D7l" secondAttribute="leading" constant="8" id="EfV-2N-wR2"/>
                 <constraint firstItem="ngZ-S8-I6d" firstAttribute="top" secondItem="kLb-0V-AiW" secondAttribute="bottom" constant="29" id="G2P-Yh-gIN"/>
@@ -77,10 +77,10 @@
                 <constraint firstItem="ngZ-S8-I6d" firstAttribute="top" secondItem="4xj-xW-D7l" secondAttribute="top" id="Wc2-en-Ztt"/>
                 <constraint firstAttribute="trailing" secondItem="ngZ-S8-I6d" secondAttribute="trailing" id="Yj0-30-0ZM"/>
                 <constraint firstAttribute="trailing" secondItem="kLb-0V-AiW" secondAttribute="trailing" constant="5" id="Zvt-Ex-1CO"/>
-                <constraint firstItem="kLb-0V-AiW" firstAttribute="top" secondItem="4xj-xW-D7l" secondAttribute="top" constant="22" id="dSg-kZ-AW3"/>
+                <constraint firstItem="kLb-0V-AiW" firstAttribute="top" secondItem="4xj-xW-D7l" secondAttribute="top" constant="75" id="dSg-kZ-AW3"/>
                 <constraint firstItem="ngZ-S8-I6d" firstAttribute="leading" secondItem="4xj-xW-D7l" secondAttribute="leading" id="ij0-ey-1O6"/>
                 <constraint firstAttribute="trailing" secondItem="ngZ-S8-I6d" secondAttribute="trailing" id="r32-yA-has"/>
-                <constraint firstItem="Wc8-cF-Cl2" firstAttribute="top" secondItem="4xj-xW-D7l" secondAttribute="top" constant="22" id="r6n-Bi-YYF"/>
+                <constraint firstItem="Wc8-cF-Cl2" firstAttribute="top" secondItem="4xj-xW-D7l" secondAttribute="top" constant="75" id="r6n-Bi-YYF"/>
                 <constraint firstAttribute="bottom" secondItem="ngZ-S8-I6d" secondAttribute="bottom" id="sCf-7Y-WES"/>
                 <constraint firstItem="ngZ-S8-I6d" firstAttribute="top" secondItem="Gwo-7e-hea" secondAttribute="bottom" constant="15" id="vKY-3D-dWy"/>
                 <constraint firstAttribute="trailing" secondItem="Gwo-7e-hea" secondAttribute="trailing" id="xDl-fb-XV7"/>

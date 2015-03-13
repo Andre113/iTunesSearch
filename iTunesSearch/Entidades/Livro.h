@@ -14,9 +14,10 @@
 //@property (nonatomic, strong) NSString *trackId;
 //@property (nonatomic, strong) NSString *artista;
 //@property (nonatomic, strong) NSDate *duracao;
-@property (nonatomic, strong) NSString *genero;
+@property (nonatomic, strong) NSString *autor;
 @property (nonatomic, strong) NSString *pais;
 @property (nonatomic, strong) NSString *ident;
 @property (nonatomic, strong) NSString *img;
+@property (nonatomic, strong) NSString *preco;
 
 @end

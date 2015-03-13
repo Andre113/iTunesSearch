@@ -12,7 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *nome;
 @property (weak, nonatomic) IBOutlet UILabel *tipo;
-@property (weak, nonatomic) IBOutlet UILabel *tempo;
 @property (weak, nonatomic) IBOutlet UILabel *genero;
 @property (weak, nonatomic) IBOutlet UILabel *pais;
 @property (weak, nonatomic) IBOutlet UIImageView *img;
