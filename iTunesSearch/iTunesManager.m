@@ -50,6 +50,10 @@ static bool isFirstAccess = YES;
         return nil;
     }
     
+    if(jsonData == nil){
+        return nil;
+    }
+    
     NSArray *resultados = [resultado objectForKey:@"results"];
     
     return resultados;

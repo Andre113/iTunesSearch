@@ -37,6 +37,7 @@
     [self.tableview registerNib:nib forCellReuseIdentifier:@"celulaPadrao"];
     [self.tableview setDelegate:self];
     [self.tableview setDataSource:self];
+    [self.texto setDelegate:self];
     
     NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
     [self changeLang:language];
@@ -234,8 +235,26 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0)
-        return @"Filmes";
+    NSInteger i = self.tipoMidia.selectedSegmentIndex;
+    if (section == 0){
+        if(i==0 || i==4){
+            return @"Filme";
+        }
+        else{
+            if(i==1){
+                return @"Música";
+            }
+            else{
+                if(i==2){
+                    return @"Podcast";
+                }
+                else{
+                    return @"eBook";
+                }
+            }
+        }
+    }
+    
     if (section == 1)
         return @"Musica";
     if(section == 2)
@@ -267,6 +286,18 @@
         }
     }
     botao.enabled = true;
+}
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[self view] endEditing:YES];
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    [self busca:self];
+    return YES;
 }
 
 - (IBAction)trocaMidia:(id)sender {
