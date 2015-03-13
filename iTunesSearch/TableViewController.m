@@ -35,10 +35,13 @@
     UINib *nib = [UINib nibWithNibName:@"TableViewCell" bundle:nil];
     
     [self.tableview registerNib:nib forCellReuseIdentifier:@"celulaPadrao"];
+    
+//    Delegates
     [self.tableview setDelegate:self];
     [self.tableview setDataSource:self];
     [self.texto setDelegate:self];
     
+//    Troca linguagem e executa busca
     NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
     [self changeLang:language];
     [self search];
@@ -47,6 +50,7 @@
 //    self.tableview.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableview.bounds.size.width, 15.f)];
 }
 
+//Trocar a linguaem dependendo do sistema
 - (void)changeLang: (NSString *)language{
     if([language isEqualToString:@"pt"]){
         [botao setTitle:@"Buscar" forState:UIControlStateNormal];
@@ -64,6 +68,7 @@
     }
 }
 
+//Realiza a busca de todos os tipos de mídia
 - (void)search{
     iTunesManager *itunes = [iTunesManager sharedInstance];
     NSString *termo = self.texto.text;
@@ -91,6 +96,7 @@
     }
 }
 
+//Monta a table dependendo da aba selecionada
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TableViewCell *celula = [self.tableview dequeueReusableCellWithIdentifier:@"celulaPadrao"];
     
@@ -159,7 +165,10 @@
                 [celula.tipo setText:@"Filme"];
                 [celula.genero setText:filme.genero];
                 [celula.pais setText:filme.pais];
-                [celula.img setImage:[UIImage imageNamed:filme.img]];
+                
+                NSURL *imageURL = [NSURL URLWithString:filme.img];
+                NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+                [celula.img setImage:[UIImage imageWithData:imageData]];
             }
             
             if (indexPath.section == 1){
@@ -168,7 +177,10 @@
                 [celula.tipo setText:@"Música"];
                 [celula.genero setText:musica.genero];
                 [celula.pais setText:musica.pais];
-                [celula.img setImage:[UIImage imageNamed:musica.img]];
+                
+                NSURL *imageURL = [NSURL URLWithString:musica.img];
+                NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+                [celula.img setImage:[UIImage imageWithData:imageData]];
             }
             
             if (indexPath.section == 2){
@@ -177,15 +189,20 @@
                 [celula.tipo setText:@"Podcast"];
                 [celula.genero setText:podcast.genero];
                 [celula.pais setText:podcast.pais];
-                [celula.img setImage:[UIImage imageNamed:podcast.img]];
+                
+                NSURL *imageURL = [NSURL URLWithString:podcast.img];
+                NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+                [celula.img setImage:[UIImage imageWithData:imageData]];
             }
             
             if (indexPath.section == 3){
                 Livro *livro = [arrayEBook objectAtIndex:indexPath.row];
                 [celula.nome setText:livro.nome];
                 [celula.tipo setText:@"Livro"];
-                [celula.img setImage:[UIImage imageNamed:livro.img]];
-                break;
+                
+                NSURL *imageURL = [NSURL URLWithString:livro.img];
+                NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+                [celula.img setImage:[UIImage imageWithData:imageData]];
             }
         }
     }
@@ -193,6 +210,7 @@
 
 }
 
+//Define o número de linhas nas sections
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger i = self.tipoMidia.selectedSegmentIndex;
     
@@ -230,10 +248,12 @@
     return 70;
 }
 
+//Seleciona o tamanho da célula
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 180;
 }
 
+//Seleciona o título das sections
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSInteger i = self.tipoMidia.selectedSegmentIndex;
     if (section == 0){
@@ -264,11 +284,39 @@
     return @"undefined";
 }
 
+// Para colocar imagens na section
+//- (UIView *)tableView : (UITableView *)tableView viewForHeaderInSection : (NSInteger) section {
+//    UIImageView *img;
+//    if (section == 4){
+//        
+//    }
+//    else{
+//        if (section == 0){
+//            img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header"]];
+//        }
+//        if (section == 1){
+//            
+//        }
+//            
+//        if (section == 2){
+//            
+//        }
+//        
+//        if (section == 3){
+//            
+//        }
+//    }
+//        
+//    return img;
+//}
+
+//Apertar o botão busca
 - (IBAction)busca:(id)sender {
     [self search];
     [self.tableview reloadData];
 }
 
+//Trocar a linguagem ao selecionar
 - (IBAction)trocaLang:(id)sender {
     botao.enabled = false;
     
@@ -288,11 +336,13 @@
     botao.enabled = true;
 }
 
+//Teclado some ao clicar na tela
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [[self view] endEditing:YES];
 }
 
+//Teclado desaparece ao apertar return. Realiza busca ao clicar em return
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     
     [textField resignFirstResponder];
@@ -300,6 +350,7 @@
     return YES;
 }
 
+//Ao trocar de aba
 - (IBAction)trocaMidia:(id)sender {
     [self busca:self];
 }

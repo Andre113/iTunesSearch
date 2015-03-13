@@ -31,12 +31,12 @@ static bool isFirstAccess = YES;
     return SINGLETON;
 }
 
+//Método de pesquisa. Recebe termo e tipo de mídia a ser buscado
 - (NSArray *)pesquisa:(NSString *) termoUsado :(NSString *)tipo{
     
 //    if (!termoUsado) {
 //        termoUsado = @"";
 //    }
-    
     
     NSString *url = [NSString stringWithFormat:@"https://itunes.apple.com/search?term=%@&media=%@", termoUsado, tipo];
     NSData *jsonData = [NSData dataWithContentsOfURL: [NSURL URLWithString:url]];
@@ -59,6 +59,7 @@ static bool isFirstAccess = YES;
     return resultados;
 }
 
+//Busca de filmes
 - (NSArray *)buscarFilmes:(NSString *)termo {
     
     NSArray *resultados = [self pesquisa:termo: @"movie"];
@@ -78,6 +79,7 @@ static bool isFirstAccess = YES;
     return filmes;
 }
 
+//Busca de músicas
 - (NSArray *)buscarMusica:(NSString *)termo {
     
     NSArray *resultados = [self pesquisa:termo :@"music"];
@@ -97,6 +99,7 @@ static bool isFirstAccess = YES;
     return musicas;
 }
 
+//Busca de podcasts
 - (NSArray *)buscarPodcast:(NSString *)termo{
     NSArray *resultados = [self pesquisa:termo :@"podcast"];
     
@@ -115,6 +118,7 @@ static bool isFirstAccess = YES;
     return podcasts;
 }
 
+//Busca de livros
 - (NSArray *)buscarLivro:(NSString *)termo{
     NSArray *resultados = [self pesquisa:termo :@"ebook"];
     
