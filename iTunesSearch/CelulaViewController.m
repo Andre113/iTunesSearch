@@ -17,6 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.titulo setText:_txt];
+    [self.tipo setText:_kind];
+    [self.genero setText:_gen];
+    [self.preco setText:_custo];
+    
+    NSURL *imageURL = [NSURL URLWithString:_img];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    [self.capa setImage:[UIImage imageWithData:imageData]];
 }
 
 - (void)didReceiveMemoryWarning {

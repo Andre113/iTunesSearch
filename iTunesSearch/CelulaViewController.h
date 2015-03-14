@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface CelulaViewController : UIViewController
+
+@property (weak, nonatomic) NSString* txt;
+@property (weak, nonatomic) NSString* img;
+@property (weak, nonatomic) NSString* kind;
+@property (weak, nonatomic) NSString* gen;
+@property (weak, nonatomic) NSString* custo;
+
 @property (weak, nonatomic) IBOutlet UILabel *titulo;
 @property (weak, nonatomic) IBOutlet UIImageView *capa;
 @property (weak, nonatomic) IBOutlet UILabel *tipo;

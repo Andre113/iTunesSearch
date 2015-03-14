@@ -73,7 +73,7 @@ static bool isFirstAccess = YES;
         [filme setPais:[item objectForKey:@"country"]];
         [filme setIdent:[item objectForKey:@"kind"]];
         [filme setImg:[item objectForKey:@"artworkUrl100"]];
-        [filme setPreco:[item objectForKey:@"trackprice"]];
+         [filme setPreco:[NSString stringWithFormat:@"$%@",[item objectForKey:@"trackPrice"]]];
         [filmes addObject:filme];
     }
     
@@ -94,7 +94,7 @@ static bool isFirstAccess = YES;
         [musica setPais:[item objectForKey:@"country"]];
         [musica setIdent:[item objectForKey:@"kind"]];
         [musica setImg:[item objectForKey:@"artworkUrl100"]];
-        [musica setPreco:[item objectForKey:@"trackprice"]];
+        [musica setPreco:[NSString stringWithFormat:@"$%@",[item objectForKey:@"trackPrice"]]];
         [musicas addObject:musica];
     }
     
@@ -114,7 +114,7 @@ static bool isFirstAccess = YES;
         [podcast setPais:[item objectForKey:@"country"]];
         [podcast setIdent:[item objectForKey:@"kind"]];
         [podcast setImg:[item objectForKey:@"artworkUrl100"]];
-        [podcast setPreco:[item objectForKey:@"trackprice"]];
+        [podcast setPreco:[NSString stringWithFormat:@"$%@",[item objectForKey:@"trackPrice"]]];
         [podcasts addObject:podcast];
     }
     
@@ -134,7 +134,7 @@ static bool isFirstAccess = YES;
         [livro setPais:[item objectForKey:@"country"]];
         [livro setIdent:[item objectForKey:@"kind"]];
         [livro setImg:[item objectForKey:@"artworkUrl100"]];
-        [livro setPreco:[item objectForKey:@"price"]];
+        [livro setPreco:[NSString stringWithFormat:@"$%@",[item objectForKey:@"price"]]];
         [livros addObject:livro];
     }
     
