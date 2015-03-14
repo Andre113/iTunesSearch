@@ -73,6 +73,21 @@
 - (void)search{
     iTunesManager *itunes = [iTunesManager sharedInstance];
     NSString *termo = self.texto.text;
+    
+    NSError *err = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[a-z]([a-z]| |\\+|\\(|\\)|'|\\^)*$" options:NSRegularExpressionCaseInsensitive error:&err];
+    if(err){
+        NSLog(@"Error REGEX");
+        return;
+    }
+    
+    NSString *search = termo;
+    search = [search stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if(![regex numberOfMatchesInString:search options:0 range:NSMakeRange(0, search.length)]){
+        return;
+    }
+    
     arrayFilmes = [itunes buscarFilmes:termo];
     arrayMusicas = [itunes buscarMusica:termo];
     arrayPodcast = [itunes buscarPodcast:termo];
@@ -447,6 +462,6 @@
 
 //Ao trocar de aba
 - (IBAction)trocaMidia:(id)sender {
-    [self busca:self];
+    [self.tableview reloadData];
 }
 @end
